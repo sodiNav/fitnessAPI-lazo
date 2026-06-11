@@ -23,7 +23,7 @@ module.exports.addWorkout = (req, res) => {
 }
 
 module.exports.getMyWorkouts = (req, res) => {
-    return Workout.find({})
+    return Workout.find({ userId: req.user.id})
     .then(workouts => {
         if(workouts.length < 1)
             return res.status(404).send({ message: "No workouts found" });
